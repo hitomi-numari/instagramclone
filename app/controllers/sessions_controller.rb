@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
   end
 
@@ -7,6 +8,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
       remember user
+      # redirect_to user_path(user.id)
       redirect_to pictures_path(current_user)
     else
       flash.now[:danger] = "ログインに失敗しました"

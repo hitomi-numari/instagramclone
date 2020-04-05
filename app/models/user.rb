@@ -21,5 +21,4 @@ class User < ApplicationRecord
    update_attribute(:remember_digest,User.digest(remember_token))
   end
 
-
 end
