@@ -1,6 +1,4 @@
-<h1>Editing Picture</h1>
-
+<% content_for :title do %>
+<h1>編集する</h1>
+<% end %>
 <%= render 'form', picture: @picture %>
-
-<%= link_to 'Show', @picture %> |
-<%= link_to 'Back', pictures_path %>

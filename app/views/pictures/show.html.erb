@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>
+  <h1>詳細</h1>
+<% end %>
 
-<p>
-  <strong>Image:</strong>
-  <%= @picture.image %>
-</p>
-
-<p>
-  <strong>Content:</strong>
+<div class="text">
+  <div class="title">本文</div>
   <%= @picture.content %>
-</p>
+</div>
+<div class="image">
+  <%= image_tag @picture.image.url %>
+</div>
 
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
+<div class="submit">
+  <%= link_to '編集する', edit_picture_path(@picture), class:"button" %>
+  <%= link_to '戻る', pictures_path, class:"button" %>
+</div>

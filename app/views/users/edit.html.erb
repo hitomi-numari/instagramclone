@@ -1,0 +1,36 @@
+<% content_for :title do %>
+  <h1>編集する</h1>
+<% end %>
+<% if @user.errors.any? %>
+  <% content_for :error do %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        <h2><%= pluralize(@user.errors.count, "件") %>のエラーがあります。<%= @user.name %></h2>
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= form_with(model: @user, local: true ) do |f| %>
+
+<div class="image_small">
+  <% if @user.image.present? %>
+   <p><%= image_tag(@user.image.url, :size => "50x50") %></p>
+  <% else %>
+   <p><%= image_tag("default.png", :size => "50x50") %></p>
+  <% end %>
+  <%= f.file_field :image, class:"image_upload" %>
+  <%= f.hidden_field :image_cache %>
+
+</div>
+  <%= f.text_field :name, placeholder: 'お名前', class: "form-control has-error" %>
+  <%= f.email_field :email, placeholder: 'メールアドレス', class: "form-control has-error" %>
+  <%= f.submit "編集する", class:'button' %>
+<% end %>
+
+  <%= link_to "投稿一覧画面にもどる", pictures_path, class:'button login' %>

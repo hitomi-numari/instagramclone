@@ -13,7 +13,7 @@
       <header>
         <div class ="clearfix loggedout_menubar_container">
           <div class="logo_parent">
-            <%= link_to("FairyBook", new_session_path, {class: "logo_child"})%>
+            <%= link_to("FannyBook", new_session_path, {class: "logo_child"})%>
           </div>
           <div class="menu_login_container">
             <% if logged_in? %>
@@ -25,28 +25,21 @@
             <% end %>
           </div>
         </div>
-
       </header>
-      <% flash.each do |key, value| %>
-      <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
-      <% end %>
     <div class="content">
       <div class="title_parent">
-        <div class="title_child">
-          <%= yield :title %>
-        </div>
+        <%= yield :title %>
       </div>
-    <%= yield :error %>
-    <div class="form-content">
-      <%= yield %>
+      <div class="form-content">
+        <%= yield %>
+      </div>
     </div>
-    </div>
-      <footer>
-        <div class ="footer_container">
-        <p>運営会社everydayphoto株式会社</p>
-        <p>© 2015-2016 Copyright MyTweet Corp.</p>
-        </div>
-      </footer>
-    </div>
-  </body>
+    <footer>
+      <div class ="footer_container">
+      <p>運営会社everydayphoto株式会社</p>
+      <p>© 2015-2016 Copyright MyTweet Corp.</p>
+      </div>
+    </footer>
+  </div>
+</body>
 </html>

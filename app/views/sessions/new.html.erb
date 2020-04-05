@@ -1,2 +1,11 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<% content_for :title do %>
+  <h1>ログインする</h1>
+<% end %>
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+  <%= f.email_field :email, placeholder: 'メールアドレス' %>
+  <%= f.password_field :password, placeholder: 'パスワード' %><br>
+  <%= f.submit "ログイン", class:'button' %><br>
+<% end %>
+
+<p>アカウントをお持ちでない方<P>
+<%= link_to "アカウント作成", new_user_path, class:'button' %>
