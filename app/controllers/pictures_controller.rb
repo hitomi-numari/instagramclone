@@ -8,6 +8,7 @@ class PicturesController < ApplicationController
 
   def show
     render :layout => '_form'
+    @favorite = current_user.favorites.find_by(blog_id: @blog.id)
   end
 
   def new
