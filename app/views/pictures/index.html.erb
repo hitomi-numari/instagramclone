@@ -41,13 +41,13 @@
         </div>
       <div class="post_nav">
         <%= link_to picture_path(picture.id), method: :get do %>
-            <i class="fa fa-info-circle"></i>
+          <i class="fa fa-info-circle"></i>
         <% end %>
         <%= link_to edit_picture_path(picture.id), method: :get do %>
-            <i class="fa fa-edit"></i>
+          <i class="fa fa-edit"></i>
         <% end %>
         <%= link_to picture_path(picture.id), data: { confirm: 'Are you sure?' }, method: :delete do %>
-            <i class="fa fa-trash"></i>
+          <i class="fa fa-trash"></i>
         <% end %>
       </div>
       </div>
