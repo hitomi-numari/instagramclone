@@ -3,8 +3,11 @@
   <div class="list-group-item">
     <div class="media">
       <div class="media-left">
-        <%= image_tag('/user_icon.png', :class => "img-circle", :style => "width: 32px; height: 32px; object-fit: cover;") unless picture.user.image.url %>
-        <%= image_tag(picture.user.image.url, :class => "img-circle", :style => "width: 32px; height: 32px; object-fit: cover;") if picture.user.image.url %>
+        <% if picture.user.image.present? %>
+         <p><%= image_tag(picture.user.image.url, :size => "32x32",:class => "img-circle" ) %></p>
+        <% else %>
+         <p><%= image_tag("default.png", :size => "32x32", :class => "img-circle") %></p>
+        <% end %>
       </div>
       <div class="media-body">
         <strong><%= link_to picture.user.name, user_path(picture.user.id)%></strong>
