@@ -1,0 +1,59 @@
+<div class="list-group">
+
+  <div class="list-group-item">
+    <div class="media">
+      <div class="media-left">
+        <%= image_tag('/user_icon.png', :class => "img-circle", :style => "width: 32px; height: 32px; object-fit: cover;") unless picture.user.image.url %>
+        <%= image_tag(picture.user.image.url, :class => "img-circle", :style => "width: 32px; height: 32px; object-fit: cover;") if picture.user.image.url %>
+      </div>
+      <div class="media-body">
+        <strong><%= link_to picture.user.name, user_path(picture.user.id)%></strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-group-item">
+    <%= image_tag(picture.image.url, :class => "", :style => "width: 100%;") %>
+  </div>
+
+  <div class="list-group-item">
+    <div class="media">
+      <div class="pull-left">
+        <% @favorite = current_user.favorites.find_by(picture_id: picture.id) if logged_in? %>
+          <p class="lead">
+            <% unless picture.user_id == current_user.id %>
+              <% if picture.favorites.present? %>
+                <%= link_to favorite_path(id: picture.favorites.ids), method: :delete do %>
+                  <i class="fas fa-heart"></i>
+                <% end %>
+              <% else %>
+                <%= link_to favorites_path(picture_id: picture.id), method: :post do %>
+                  <i class="far fa-heart"></i>
+                <% end %>
+              <% end %>
+            <% end %>
+            <strong>いいね！<%= picture.favorite_users.count %>件</strong>
+          </p>
+          <p><%= picture.content %></p>
+          <time datetime="<%= picture.updated_at %>">
+            <%= link_to time_ago_in_words(picture.updated_at)+"前", picture_path(picture.id), alt: picture.updated_at %>
+          </time>
+        </div>
+        <div class="pull-right">
+          <%= link_to picture_path(picture.id), method: :get do %>
+            <i class="fa fa-info-circle"></i>
+          <% end %>
+          <% if picture.user == current_user %>
+            <%= link_to edit_picture_path(picture.id), method: :get do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+            <%= link_to picture_path(picture.id), data: { confirm: 'Are you sure?' }, method: :delete do %>
+              <i class="fa fa-trash"></i>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
