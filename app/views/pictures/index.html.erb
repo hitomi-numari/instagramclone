@@ -4,12 +4,17 @@
       <% flash.each do |key, value| %>
         <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
       <% end %>
-
+    <br>
     <div class="link_to_new">
       <%= link_to new_picture_path, method: :get do %>
         <i class="fa fa-plus">新しく投稿する</i>
       <% end %>
     </div>
+    <br>
     <% @pictures.each do |picture| %>
       <%= render :partial => "post", :locals => { picture: picture } %>
     <% end %>
+
+    </div>
+  </div>
+</div>
