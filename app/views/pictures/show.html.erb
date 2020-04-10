@@ -6,7 +6,7 @@
         <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
       <% end %>
 
-      <%= render :partial => "post", :locals => { picture: @picture } %>
+      <%= render partial: "post", locals: { picture: @picture } %>
 
       <% if @picture.favorite_users.present? %>
           <div class="list-group-item">

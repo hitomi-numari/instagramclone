@@ -18,9 +18,9 @@
     <div class="media-left">
       <% if logged_in?%>
         <% if current_user.image.present? %>
-         <p><%= image_tag(current_user.image.url, :size => "32x32",:class => "img-circle" ) %></p>
+         <p><%= image_tag(current_user.image.url, size: "32x32", class: "img-circle" ) %></p>
         <% else %>
-         <p><%= image_tag("default.png", :size => "32x32", :class => "img-circle") %></p>
+         <p><%= image_tag("default.png", size: "32x32", class: "img-circle") %></p>
         <% end %>
     </div>
     <div class="media-body">
@@ -38,7 +38,7 @@
     <% if @picture.image.url.present? %>
       <ul class="list-group" style="margin-bottom: 0px;">
         <li class="list-group-item">
-          <%= image_tag(@picture.image.url, :class => "img-thumbnail", :style => "width: 100%;") if @picture.image && @picture.image.url %>
+          <%= image_tag(@picture.image.url, class: "img-thumbnail", style: "width: 100%;") if @picture.image && @picture.image.url %>
         </li>
       </ul>
     <% end %>
