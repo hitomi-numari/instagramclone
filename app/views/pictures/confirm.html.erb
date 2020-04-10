@@ -1,23 +1,15 @@
-<% content_for :title do %>
-  <h1>確認画面</h1>
-<% end %>
+<div class="row">
 
-<%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
+  <div class="hidden-xs col-sm-12">
+    <div class="center-block">
 
-  <div class="text">
-    <div class="title">本文</div>
-    <%= @picture.content %>
-    <%= form.hidden_field :content %>
+      <div class="page-header">
+        <h2>以下のように投稿します</h2>
+      </div>
+
+      <%= render 'form_confirm' %>
+
+    </div>
   </div>
 
-  <div class="image">
-    <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
-    <%= form.hidden_field :image_cache %>
-  </div>
-
-  <div class="submit">
-    <%= form.submit "投稿する", class:"button" %>
-    <%= form.submit "戻る", name: "back", class:"button" %>
-  </div>
-
-<% end %>
+</div>

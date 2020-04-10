@@ -14,6 +14,6 @@ module SessionsHelper
   end
 
   def login?
-    redirect_to sessions_new_path, notice: 'ログインが必要な機能です' unless logged_in?
+    redirect_to sessions_new_path, notice: 'ログインが必要な機能です' if logged_in?
   end
 end

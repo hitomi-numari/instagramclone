@@ -10,22 +10,53 @@
       </ul>
     </div>
   <% end %>
+<div class="list-group">
 
-  <%= form.text_area :content, class:'form_control', rows: 10, placeholder: "コメントを書く"%>
-  <div class="image">
-    <%if @picture.image.url.present?%>
-      <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
-    <%end%>
-      <%= form.file_field :image, class:"image_upload" %>
-      <%= form.hidden_field :image_cache %>
+<div class="list-group-item">
+  <div class="media">
+
+    <div class="media-left">
+      <% if logged_in?%>
+        <% if current_user.image.present? %>
+         <p><%= image_tag(current_user.image.url, :size => "32x32",:class => "img-circle" ) %></p>
+        <% else %>
+         <p><%= image_tag("default.png", :size => "32x32", :class => "img-circle") %></p>
+        <% end %>
+    </div>
+    <div class="media-body">
+      <strong><%= current_user.name %></strong>
+    </div>
+      <% else %>
+        <% link_to new_session_path, notice: 'ログインが必要な機能です' %>
+      <% end %>
+  </div>
+</div>
+
+<div class="list-group-item">
+  <div class="input-group">
+    <span class="input-group-addon">写真を選択</span>
+    <% if @picture.image.url.present? %>
+      <ul class="list-group" style="margin-bottom: 0px;">
+        <li class="list-group-item">
+          <%= image_tag(@picture.image.url, :class => "img-thumbnail", :style => "width: 100%;") if @picture.image && @picture.image.url %>
+        </li>
+      </ul>
+    <% end %>
+    <%= form.file_field :image, class: 'form-control', id: :picture_image%>
+    <%= form.hidden_field :image_cache %>
+  </div>
+</div>
+
+<div class="list-group-item">
+  <div class="input-group">
+    <%= form.text_area :content, class: 'form-control', placeholder: "写真にコメントを添えましょう。（任意）" %>
   </div>
 
-  <div class="submit">
-    <%= form.submit "登録する", class:"button" %>
+</div>
+  <br>
+  <div class="pull-right">
+      <%= form.submit "送信する", class: 'btn btn-primary' %>
   </div>
 
-  <div class="navbar">
-    <%= link_to "投稿一覧画面にもどる", pictures_path %>
-  </div>
-
+</div>
 <% end %>
