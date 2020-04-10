@@ -1,26 +1,89 @@
-<% content_for :title do %>
-  <div class="clearfix profile_bar">
-    <div class="profile_name"><%= @user.name %>のページ
-    <div class="profile_icon">
-  <% if @user.image.present? %>
-   <p><%= image_tag(@user.image.url, :size => "50x50") %></p>
-  <% else %>
-   <p><%= image_tag("default.png", :size => "50x50") %></p>
-  <% end %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+    <br>
+
+    <% flash.each do |key, value| %>
+      <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
+    <% end %>
+
+    <div class="row">
+      <div class="pull-left" style="margin: 0 20px">
+        <% if @user.image.present? %>
+         <p><%= image_tag(@user.image.url, :size => "50x50") %></p>
+        <% else %>
+         <p><%= image_tag("default.png", :size => "50x50") %></p>
+        <% end %>
+      </div>
+      <div class="pull-left">
+        <p class="lead"><%= @user.name %></p>
+        <% if @user == current_user %>
+          <p><%= @user.email %></p>
+        <% end %>
+        <p>投稿<%= @user.pictures.count %>件</p>
+      </div>
     </div>
+
+    <!-- タブ・メニュー -->
+    <br>
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="#favorite_pictures" data-toggle="tab">
+          <strong>
+            いいね！した投稿
+            <span class="badge"><%= @user.favorite_pictures.count %></span>
+          </strong>
+        </a>
+      </li>
+      <li>
+        <a href="#my_pictures" data-toggle="tab">
+          <strong>
+            投稿一覧
+            <span class="badge"><%= @user.pictures.count %></span>
+          </strong>
+        </a>
+      </li>
+    </ul>
+
+    <!-- タブ内容 -->
+    <br>
+    <div class="tab-content">
+
+      <div class="tab-pane active" id="favorite_pictures">
+        <div class="row">
+
+          <% @user.favorite_pictures.order("updated_at DESC").each do |picture| %>
+            <div class="col-xs-4">
+              <div class="thum">
+                <%= link_to image_tag(picture.image.url, :class => "img-thumbnail", :style =>""), picture_path(picture.id) %>
+              </div>
+              <p class="content">
+                <strong>いいね！<%= picture.favorite_users.count %>件</strong>
+              </p>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+
+      <div class="tab-pane" id="my_pictures">
+        <div class="row">
+
+          <% @user.pictures.order("updated_at DESC").each do |picture| %>
+            <div class="col-xs-4">
+              <div class="thum">
+                <%= link_to image_tag(picture.image.url, :class => "img-thumbnail", :style => ""), picture_path(picture.id) %>
+              </div>
+                <p class="comment">
+                  <strong>いいね！<%= picture.favorite_users.count %>件</strong>
+                </p>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+
     </div>
+
   </div>
-<% end %>
-<div class="profile_content">
-  <table>
-    <tr>
-      <th>メールアドレス:</th><td><%= @user.email %></td>
-    </tr>
-  </table>
 </div>
-<% if logged_in? %>
-  <%= link_to "編集する", edit_user_path(current_user), class:'button login' %>
-  <%= link_to "投稿一覧画面にもどる", pictures_path, class:'button login' %>
-<% else %>
-  <%= link_to "ログインする", new_session_path, class:"button login" %>
-<% end %>

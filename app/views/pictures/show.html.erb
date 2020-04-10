@@ -1,16 +1,22 @@
-<% content_for :title do %>
-  <h1>詳細</h1>
-<% end %>
+<div class="row">
+  <div class="hidden-xs col-sm-12">
+    <div class="center-block">
 
-<div class="text">
-  <div class="title">本文</div>
-  <%= @picture.content %>
-</div>
-<div class="image">
-  <%= image_tag @picture.image.url %>
-</div>
+      <% flash.each do |key, value| %>
+        <div class="alert <%= bootstrap_class_for(key) %>" ><%= value %></div>
+      <% end %>
 
-<div class="submit">
-  <%= link_to '編集する', edit_picture_path(@picture), class:"button" %>
-  <%= link_to '戻る', pictures_path, class:"button" %>
+      <%= render :partial => "post", :locals => { picture: @picture } %>
+
+      <% if @picture.favorite_users.present? %>
+          <div class="list-group-item">
+            <strong>いいね！したユーザ </strong>
+            <% @picture.favorite_users.each do |favuser| %>
+              <span class="label label-success"><%= favuser.name %></span>
+            <% end %>
+          </div>
+      <% end %>
+
+    </div>
+  </div>
 </div>
