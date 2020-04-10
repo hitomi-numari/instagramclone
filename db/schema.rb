@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2020_04_04_152202) do
     t.integer "picture_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id", "picture_id"], name: "index_favorites_on_user_id_and_picture_id", unique: true
   end
 
   create_table "pictures", force: :cascade do |t|
