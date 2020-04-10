@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_action :ensure_correct_user, only: [:create, :destroy]
+
   def index
   end
 
