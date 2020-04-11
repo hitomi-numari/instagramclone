@@ -38,3 +38,11 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'faker'
+
+group :development do
+  gem 'letter_opener_web'
+end
+
+group :development, :production, :test do
+    gem 'jquery-rails'
+end
