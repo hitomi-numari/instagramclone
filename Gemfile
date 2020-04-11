@@ -38,3 +38,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 gem 'faker'
+
+group :development, :production, :test do
+    gem 'jquery-rails'
+end
