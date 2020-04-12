@@ -42,3 +42,7 @@ gem 'faker'
 group :development, :production, :test do
     gem 'jquery-rails'
 end
+
+group :development do
+  gem 'letter_opener_web'
+end
