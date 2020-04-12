@@ -60,7 +60,9 @@
           <% @user.favorite_pictures.order("updated_at DESC").each do |picture| %>
             <div class="col-xs-4">
               <div class="thum">
-                <%= link_to image_tag(picture.image.url, class: "img-thumbnail", :style =>""), picture_path(picture.id) %>
+                <% if picture.image? %>
+                  <%= link_to image_tag(picture.image.url, class: "img-thumbnail", :style =>""), picture_path(picture.id) %>
+                <% end %>
               </div>
               <p class="content">
                 <strong>いいね！<%= picture.favorite_users.count %>件</strong>
