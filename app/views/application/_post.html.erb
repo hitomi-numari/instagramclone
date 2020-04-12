@@ -16,7 +16,9 @@
   </div>
 
   <div class="list-group-item">
-    <%= image_tag(picture.image.url, class: "", style: "width: 100%;") %>
+    <% if picture.image? %>
+      <%= image_tag(picture.image.url, class: "", style: "width: 100%;") %>
+    <% end %>
   </div>
 
   <div class="list-group-item">

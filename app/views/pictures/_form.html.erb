@@ -38,7 +38,9 @@
     <% if @picture.image.url.present? %>
       <ul class="list-group" style="margin-bottom: 0px;">
         <li class="list-group-item">
-          <%= image_tag(@picture.image.url, class: "img-thumbnail", style: "width: 100%;") if @picture.image && @picture.image.url %>
+          <% if @picture.image? %>
+            <%= image_tag(@picture.image.url, class: "img-thumbnail", style: "width: 100%;") if @picture.image && @picture.image.url %>
+          <% end %>
         </li>
       </ul>
     <% end %>
