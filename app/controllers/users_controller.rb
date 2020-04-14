@@ -1,12 +1,19 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def show
 
   end
 
   def new
-    @user = User.new
+    if logged_in?
+      @pictures = Picture.all
+      render 'pictures/index'
+    else
+      @user = User.new
+      render 'new'
+    end
   end
 
   def edit
