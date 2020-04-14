@@ -8,7 +8,7 @@
       <% end %>
     </div>
     <br>
-    <% @pictures.each do |picture| %>
+    <% @pictures.order(created_at: :DESC).each do |picture| %>
       <%= render partial: "post", locals: { picture: picture } %>
     <% end %>
 
