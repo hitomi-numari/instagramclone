@@ -26,7 +26,6 @@
       <div class="pull-left">
 
           <p class="lead">
-
             <% unless picture.user_id == current_user.id %>
               <% if picture.favorite_users.ids == current_user.id %>
                 <%= link_to favorite_path(id: picture.favorites.ids), method: :delete do %>
