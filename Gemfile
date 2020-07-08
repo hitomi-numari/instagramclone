@@ -47,6 +47,8 @@ end
 
 gem 'fog-aws'
 gem 'dotenv-rails'
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
 
 gem 'dotenv-rails' # 開発環境で環境変数を操作するのに必要
   gem 'unicorn' # アプリケーションサーバのunicorn
