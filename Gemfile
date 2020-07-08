@@ -44,3 +44,6 @@ group :development, :production, :test do
     gem 'dotenv-rails'
     gem 'letter_opener_web'
 end
+
+gem 'fog-aws'
+gem 'dotenv-rails'
