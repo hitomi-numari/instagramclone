@@ -65,6 +65,8 @@ GEM
     capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
     capistrano-harrow (0.5.3)
+    capistrano-npm (1.0.3)
+      capistrano (>= 3.0.0)
     capistrano-rails (1.5.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -289,6 +291,7 @@ DEPENDENCIES
   byebug
   capistrano (= 3.6.0)
   capistrano-bundler
+  capistrano-npm
   capistrano-rails
   capistrano-rbenv
   capistrano3-unicorn
