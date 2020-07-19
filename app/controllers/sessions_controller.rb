@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+  before_action :redirect_to_index_if_not_logout, only: [:new]
   def new
   end
 

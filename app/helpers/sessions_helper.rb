@@ -33,4 +33,11 @@ module SessionsHelper
     end
   end
 
+  def redirect_to_index_if_not_logout
+    if logged_in?
+      redirect_to pictures_path
+      flash[:danger] = "ログアウトしてください"
+    end
+  end 
+
 end
